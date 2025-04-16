@@ -2,105 +2,115 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <title>Bienvenue au mariage</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            background: url('https://images.unsplash.com/photo-1520931060316-e6d21e3b2f54') no-repeat center center fixed;
-            background-size: cover;
-            font-family: 'Georgia', serif;
-            color: #856404;
-            text-align: center;
-        }
-        .container {
-            background: rgba(255, 255, 255, 0.85);
-            padding: 40px;
-            margin: 10vh auto;
-            width: 80%;
-            max-width: 500px;
-            border-radius: 20px;
-            box-shadow: 0 0 15px rgba(0,0,0,0.2);
-        }
-        h1 {
-            font-size: 2.5em;
-            margin-bottom: 0.2em;
-        }
-        h2 {
-            font-size: 1.4em;
-            margin-top: 0;
-            margin-bottom: 1em;
-        }
-        input {
-            width: 90%;
-            padding: 15px;
-            font-size: 1em;
-            border: 1px solid #ccc;
-            border-radius: 10px;
-            margin-bottom: 1em;
-        }
-        button {
-            padding: 10px 20px;
-            font-size: 1em;
-            background-color: #e0c187;
-            border: none;
-            border-radius: 10px;
-            color: white;
-            cursor: pointer;
-        }
-        .result {
-            margin-top: 20px;
-            font-size: 1.3em;
-            font-weight: bold;
-            display: none;
-            opacity: 0;
-            transition: opacity 1s ease-in-out;
-        }
-        .result.visible {
-            display: block;
-            opacity: 1;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>Bienvenue au mariage</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: url('https://images.unsplash.com/photo-1521711972234-56d8f27ff1c9?auto=format&fit=crop&w=1950&q=80') no-repeat center center fixed;
+      background-size: cover;
+      font-family: 'Georgia', serif;
+      color: #333;
+      text-align: center;
+    }
+    .container {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 40px;
+      margin: 10vh auto;
+      width: 90%;
+      max-width: 600px;
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    }
+    h1 {
+      font-size: 2.8em;
+      margin-bottom: 0.2em;
+      color: #d88c9a;
+    }
+    h2 {
+      font-size: 1.5em;
+      margin-top: 0;
+      margin-bottom: 1.5em;
+      color: #6c5b7b;
+    }
+    input {
+      width: 90%;
+      padding: 15px;
+      font-size: 1em;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      margin-bottom: 1em;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 1em;
+      background-color: #f6bd60;
+      border: none;
+      border-radius: 10px;
+      color: white;
+      cursor: pointer;
+    }
+    .results {
+      margin-top: 25px;
+      font-size: 1.2em;
+    }
+    .result-item {
+      background-color: #f7ede2;
+      padding: 10px;
+      margin: 10px auto;
+      border-radius: 10px;
+      width: 90%;
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1>C & S</h1>
-        <h2>Bienvenue au mariage de Clara & Samuel</h2>
-        <input type="text" id="searchInput" placeholder="Entrez votre prénom et nom" />
-        <button onclick="searchGuest()">Rechercher</button>
-        <div class="result" id="result"></div>
-    </div>
+  <div class="container">
+    <h1>C & S</h1>
+    <h2>Bienvenue au mariage de Clara & Samuel</h2>
+    <input type="text" id="searchInput" placeholder="Entrez votre prénom ou nom" />
+    <button onclick="searchGuest()">Rechercher</button>
+    <div class="results" id="result"></div>
+  </div>
 
-    <script>
-        const guests = {
-            "emma durand": "Table Orchidée",
-            "raphaël lemoine": "Table Tulipe",
-            "léa benhamou": "Table Lavande",
-            "nathan cohen": "Table Pivoine",
-            "sarah fitoussi": "Table Rose",
-            "david mizrahi": "Table Lys"
-        };
+  <script>
+    const guests = [
+      { nom: "emma durand", table: "Table Orchidée" },
+      { nom: "raphaël lemoine", table: "Table Tulipe" },
+      { nom: "raphaëlle levy", table: "Table Marguerite" },
+      { nom: "léa benhamou", table: "Table Lavande" },
+      { nom: "nathan cohen", table: "Table Pivoine" },
+      { nom: "sarah fitoussi", table: "Table Rose" },
+      { nom: "david mizrahi", table: "Table Lys" }
+    ];
 
-        function searchGuest() {
-            const input = document.getElementById('searchInput').value.trim().toLowerCase();
-            const resultDiv = document.getElementById('result');
-            if (guests[input]) {
-                resultDiv.innerHTML = "Bienvenue " + input.split(" ")[0].charAt(0).toUpperCase() + input.split(" ")[0].slice(1) + ", vous êtes à la " + guests[input] + " !";
-                resultDiv.classList.add("visible");
-                setTimeout(() => {
-                    resultDiv.classList.remove("visible");
-                    document.getElementById('searchInput').value = "";
-                }, 10000);
-            } else {
-                resultDiv.innerHTML = "Invité non trouvé. Vérifiez l'orthographe.";
-                resultDiv.classList.add("visible");
-                setTimeout(() => {
-                    resultDiv.classList.remove("visible");
-                }, 5000 );
-            }
-        }
-    </script>
+    function normalize(str) {
+      return str.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
+    }
+
+    function searchGuest() {
+      const input = document.getElementById('searchInput').value.trim();
+      const searchTerm = normalize(input);
+      const resultDiv = document.getElementById('result');
+      resultDiv.innerHTML = "";
+
+      const matchedGuests = guests.filter(g => normalize(g.nom).includes(searchTerm));
+
+      if (matchedGuests.length > 0) {
+        matchedGuests.forEach(g => {
+          const div = document.createElement("div");
+          div.className = "result-item";
+          div.textContent = g.nom.charAt(0).toUpperCase() + g.nom.slice(1) + " → " + g.table;
+          resultDiv.appendChild(div);
+        });
+      } else {
+        const div = document.createElement("div");
+        div.className = "result-item";
+        div.textContent = "Invité non trouvé. Vérifiez l'orthographe.";
+        resultDiv.appendChild(div);
+      }
+    }
+  </script>
 </body>
 </html>
