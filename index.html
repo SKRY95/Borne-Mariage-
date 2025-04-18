@@ -9,7 +9,7 @@
     body {
       margin: 0;
       padding: 0;
-      background: url('https://raw.githubusercontent.com/SKRY95/borne-mariage/main/background.jpg') no-repeat center center fixed;
+      background: url('background.jpg') no-repeat center center fixed;
       background-size: cover;
       font-family: 'Georgia', serif;
       color: #333;
@@ -21,7 +21,7 @@
       to { opacity: 1; }
     }
     .container {
-      background: rgba(255, 255, 255, 0.92);
+      background: rgba(255, 255, 255, 0.75); /* OPACITÉ réduite ici */
       padding: 40px;
       margin: 10vh auto;
       width: 90%;
@@ -74,55 +74,6 @@
   </style>
 </head>
 <body>
-  <audio autoplay loop hidden>
-    <source src="MusiqueBorne.mp3" type="audio/mpeg">
-    Votre navigateur ne supporte pas l’audio.
-  </audio>
-  <div class="container">
-    <h1>C & S</h1>
-    <h2>Bienvenue au mariage de Clara & Samuel</h2>
-    <input type="text" id="searchInput" placeholder="Entrez votre prénom ou nom" />
-    <button onclick="searchGuest()">Rechercher</button>
-    <div class="results" id="result"></div>
-  </div>
-
-  <script>
-    const guests = [
-      { nom: "emma durand", table: "Table Orchidée" },
-      { nom: "raphaël lemoine", table: "Table Tulipe" },
-      { nom: "raphaëlle levy", table: "Table Marguerite" },
-      { nom: "léa benhamou", table: "Table Lavande" },
-      { nom: "nathan cohen", table: "Table Pivoine" },
-      { nom: "sarah fitoussi", table: "Table Rose" },
-      { nom: "david mizrahi", table: "Table Lys" }
-    ];
-
-    function normalize(str) {
-      return str.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
-    }
-
-    function searchGuest() {
-      const input = document.getElementById('searchInput').value.trim();
-      const searchTerm = normalize(input);
-      const resultDiv = document.getElementById('result');
-      resultDiv.innerHTML = "";
-
-      const matchedGuests = guests.filter(g => normalize(g.nom).includes(searchTerm));
-
-      if (matchedGuests.length > 0) {
-        matchedGuests.forEach(g => {
-          const div = document.createElement("div");
-          div.className = "result-item";
-          div.textContent = g.nom.charAt(0).toUpperCase() + g.nom.slice(1) + " → " + g.table;
-          resultDiv.appendChild(div);
-        });
-      } else {
-        const div = document.createElement("div");
-        div.className = "result-item";
-        div.textContent = "Invité non trouvé. Vérifiez l'orthographe.";
-        resultDiv.appendChild(div);
-      }
-    }
-  </script>
-</body>
-</html>
+  <!-- 🎶 Musique autoplay -->
+  <audio id="weddingMusic" autoplay loop>
+    <source src="MusiqueBorne
